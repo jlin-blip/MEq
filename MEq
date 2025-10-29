@@ -1,39 +1,97 @@
-<h3>Midodrine Equivalents (ME) Calculator</h3>
-<p>
-Enter the patient’s daily dose for each medication. The calculator will convert each to Midodrine Equivalents (ME) and display the total.
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midodrine Equivalents (ME) Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9fafb;
+    color: #222;
+  }
+  h2 {
+    color: #003366;
+  }
+  form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 400px;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #0077cc;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005fa3;
+  }
+  .result {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+  <h2>Midodrine Equivalents (ME) Calculator</h2>
+  <p>
+    Midodrine Equivalents (ME) express a patient's total blood pressure–raising medication burden.
+    Each drug's usual maximum daily dose equals <strong>100 ME</strong>.
+    <br>Formula: <code>ME = (dose / max dose) × 100</code>
+  </p>
 
-<form id="me-calculator">
-  <label>Midodrine (mg/day): 
-    <input type="number" id="midodrine" min="0" step="1">
-  </label><br>
-  
-  <label>Fludrocortisone (mg/day): 
-    <input type="number" id="fludro" min="0" step="0.05">
-  </label><br>
-  
-  <label>Droxidopa (mg/day): 
-    <input type="number" id="droxidopa" min="0" step="100">
-  </label><br>
-  
-  <label>Pyridostigmine (mg/day): 
-    <input type="number" id="pyridostigmine" min="0" step="30">
-  </label><br><br>
+  <form id="me-calculator">
+    <label>Midodrine (mg/day):
+      <input type="number" id="midodrine" min="0" step="1">
+    </label>
 
-  <button type="button" onclick="calculateME()">Calculate Total ME</button>
-</form>
+    <label>Fludrocortisone (mg/day):
+      <input type="number" id="fludro" min="0" step="0.05">
+    </label>
 
-<p><strong>Total ME:</strong> <span id="totalME">0</span></p>
+    <label>Droxidopa (mg/day):
+      <input type="number" id="droxidopa" min="0" step="100">
+    </label>
 
-<script>
-function calculateME() {
-  // conversion factors: ME = (dose / max dose) * 100
-  const midodrine = (parseFloat(document.getElementById('midodrine').value) || 0) / 30 * 100;
-  const fludro = (parseFloat(document.getElementById('fludro').value) || 0) / 0.3 * 100;
-  const droxidopa = (parseFloat(document.getElementById('droxidopa').value) || 0) / 1800 * 100;
-  const pyridostigmine = (parseFloat(document.getElementById('pyridostigmine').value) || 0) / 180 * 100;
+    <label>Pyridostigmine (mg/day):
+      <input type="number" id="pyridostigmine" min="0" step="30">
+    </label>
 
-  const total = midodrine + fludro + droxidopa + pyridostigmine;
-  document.getElementById('totalME').innerText = total.toFixed(1);
-}
-</script>
+    <button type="button" onclick="calculateME()">Calculate Total ME</button>
+  </form>
+
+  <div class="result">
+    Total ME: <span id="totalME">0</span>
+  </div>
+
+  <script>
+    function calculateME() {
+      const midodrine = (parseFloat(document.getElementById('midodrine').value) || 0) / 30 * 100;
+      const fludro = (parseFloat(document.getElementById('fludro').value) || 0) / 0.3 * 100;
+      const droxidopa = (parseFloat(document.getElementById('droxidopa').value) || 0) / 1800 * 100;
+      const pyridostigmine = (parseFloat(document.getElementById('pyridostigmine').value) || 0) / 180 * 100;
+
+      const total = midodrine + fludro + droxidopa + pyridostigmine;
+      document.getElementById('totalME').innerText = total.toFixed(1);
+    }
+  </script>
+</body>
+</html>
