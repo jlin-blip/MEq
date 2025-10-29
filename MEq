@@ -1,0 +1,39 @@
+<h3>Midodrine Equivalents (ME) Calculator</h3>
+<p>
+Enter the patient’s daily dose for each medication. The calculator will convert each to Midodrine Equivalents (ME) and display the total.
+</p>
+
+<form id="me-calculator">
+  <label>Midodrine (mg/day): 
+    <input type="number" id="midodrine" min="0" step="1">
+  </label><br>
+  
+  <label>Fludrocortisone (mg/day): 
+    <input type="number" id="fludro" min="0" step="0.05">
+  </label><br>
+  
+  <label>Droxidopa (mg/day): 
+    <input type="number" id="droxidopa" min="0" step="100">
+  </label><br>
+  
+  <label>Pyridostigmine (mg/day): 
+    <input type="number" id="pyridostigmine" min="0" step="30">
+  </label><br><br>
+
+  <button type="button" onclick="calculateME()">Calculate Total ME</button>
+</form>
+
+<p><strong>Total ME:</strong> <span id="totalME">0</span></p>
+
+<script>
+function calculateME() {
+  // conversion factors: ME = (dose / max dose) * 100
+  const midodrine = (parseFloat(document.getElementById('midodrine').value) || 0) / 30 * 100;
+  const fludro = (parseFloat(document.getElementById('fludro').value) || 0) / 0.3 * 100;
+  const droxidopa = (parseFloat(document.getElementById('droxidopa').value) || 0) / 1800 * 100;
+  const pyridostigmine = (parseFloat(document.getElementById('pyridostigmine').value) || 0) / 180 * 100;
+
+  const total = midodrine + fludro + droxidopa + pyridostigmine;
+  document.getElementById('totalME').innerText = total.toFixed(1);
+}
+</script>
